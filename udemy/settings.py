@@ -1,6 +1,12 @@
 from pathlib import Path
+
 import os
 from django.contrib.messages import constants as messages
+
+
+# Initialize environ
+# env = environ.Env()
+# env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -45,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'udemy.urls'
 
