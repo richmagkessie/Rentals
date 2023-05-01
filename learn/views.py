@@ -21,7 +21,7 @@ def home_view(request):
     listing_filter = ListingFilter(request.GET, queryset=listings)
     user_liked_listings = LikedListing.objects.filter(profile=request.user.profile).values_list('listing')
     liked_listings_ids = [l[0] for l in user_liked_listings]
-    
+
     context = {
         'listing_filter': listing_filter,
     }
@@ -95,7 +95,7 @@ def edit_view(request, id):
         messages.error(
             request, f'An error occured while trying to access the edit page.')
         return redirect('home')
-    
+
 
 @login_required
 def like_listing_view(request, id):

@@ -41,7 +41,7 @@ class RegisterView(View):
     def get(self, request):
         register_form = UserCreationForm()
         return render(request, 'views/register.html', {'register_form': register_form,})
-    
+
     def post(self, request):
         register_form = UserCreationForm(data=request.POST)
         if register_form.is_valid():
@@ -56,7 +56,7 @@ class RegisterView(View):
 
 @method_decorator(login_required, name='dispatch')
 class ProfileView(View):
-    
+
     def get(self, request):
         user_listings = Listing.objects.filter(seller=request.user.profile)
         user_liked_listings = LikedListing.objects.filter(profile=request.user.profile).all()
@@ -64,7 +64,7 @@ class ProfileView(View):
         profile_form = ProfileForm(instance=request.user.profile)
         location_form = LocationForm(instance=request.user.profile.location)
         return render(request, 'views/profile.html', {'user_form':user_form, 'profile_form':profile_form, 'location_form':location_form, 'user_listings': user_listings, 'user_liked_listings':user_liked_listings,})
-    
+
     def post(self, request):
          user_listings = Listing.objects.filter(seller=request.user.profile)
          user_liked_listings = LikedListing.objects.filter(profile=request.user.profile).all()
@@ -79,4 +79,3 @@ class ProfileView(View):
          else:
              messages.error(request, 'Error Updating Profile!')
          return render(request, 'views/profile.html', {'user_form':user_form, 'profile_form':profile_form, 'location_form':location_form, 'user_listings': user_listings, 'user_liked_listings':user_liked_listings,})
-    

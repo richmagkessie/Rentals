@@ -1,7 +1,7 @@
 from django import forms 
 from localflavor.us.forms import USStateField, USZipCodeField
 from .models import Location, Profile
-from django.contrib.auth.models import User 
+from django.contrib.auth.models import User
 
 from dataclasses import field
 from .widgets import CustomPictureImageFieldWidget
@@ -10,7 +10,7 @@ from .widgets import CustomPictureImageFieldWidget
 class UserForm(forms.ModelForm):
     username = forms.CharField(disabled=True)
     class Meta:
-        model = User 
+        model = User
         fields = ('username', 'first_name', 'last_name')
 
 
@@ -18,7 +18,7 @@ class ProfileForm(forms.ModelForm):
     photo = forms.ImageField(widget=CustomPictureImageFieldWidget)
     bio = forms.TextInput()
     class Meta:
-        model = Profile 
+        model = Profile
         fields = ('photo', 'bio', 'phone_number')
 
 class LocationForm(forms.ModelForm):
@@ -27,5 +27,3 @@ class LocationForm(forms.ModelForm):
     class Meta:
         model = Location
         fields = {'address_1', 'address_2', 'city', 'state', 'zip_code'}
-
-
